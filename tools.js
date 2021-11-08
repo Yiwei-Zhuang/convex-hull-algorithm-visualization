@@ -14,12 +14,21 @@ function drawPoint(p, r, c = "#000000") {
     return path;
 }
 
-function drawPolygon(pointList, c = "#000000") {
-    // let points = bruteForce(Array.from(globalPointList));
-    for (let i = 0; i < pointList.length - 1; i++) {
-        drawLine(pointList[i], pointList[i + 1], c);
+function drawPolygon(path, pointList, c = "#000000") {
+    if (!path) {
+        path = new paper.Path();
     }
-    drawLine(pointList[pointList.length - 1], pointList[0], c);
+    path.removeSegments();
+    path.strokeColor = c;
+    for (let i = 0; i < pointList.length; i++) {
+        path.add(new paper.Point(pointList[i].x, -pointList[i].y + GLOBAL_CANVAS_HEIGHT));
+    }
+    path.selected = true;
+    path.closed = true;
+    // for (let i = 0; i < pointList.length - 1; i++) {
+    //     drawLine(pointList[i], pointList[i + 1], c);
+    // }
+    // drawLine(pointList[pointList.length - 1], pointList[0], c);
 }
 
 function getPoint(x, y) {
@@ -43,6 +52,10 @@ function orient(p1, p2, p3) {
     let v1 = getVector(p1, p2);
     let v2 = getVector(p2, p3);
     return crossProduct(v1, v2);
+}
+
+function getDistance(p1, p2) {
+    return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
 }
 
 
