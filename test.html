@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <!--    <script type="text/javascript" src="canvas_test.js"></script>-->
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.15/paper-full.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script type="text/javascript" src="paper_test.js"></script>
+    <script type="text/javascript" src="tools.js"></script>
+    <script type="text/javascript" src="merge_hull.js"></script>
+
+</head>
+<body>
+<canvas id="myCanvas" resize style="width: 800px; height: 600px; border: solid blue 3px"></canvas>
+
+<input id="merge_hull_btn" type="button" value="Merge Hull">
+</body>
+<script>
+    $("#merge_hull_btn").click(function () {
+        drawPolygon(grahamScan(Array.from(globalPointList)));
+    });
+
+</script>
+</html>
