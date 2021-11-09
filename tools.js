@@ -8,6 +8,14 @@ function drawLine(p1, p2, c = "#000000") {
     return path;
 }
 
+function addPointToPath(path, p) {
+    path.add(new paper.Point(p.x, -p.y + GLOBAL_CANVAS_HEIGHT));
+}
+
+function insertPointToPath(path, i, p) {
+    path.insert(i, new paper.Point(p.x, -p.y + GLOBAL_CANVAS_HEIGHT));
+}
+
 function drawPoint(p, r, c = "#000000") {
     let path = new paper.Path.Circle(new paper.Point(p.x, -p.y + GLOBAL_CANVAS_HEIGHT), r);
     path.fillColor = c;
@@ -58,6 +66,9 @@ function getDistance(p1, p2) {
     return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
 }
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 function removeItemOnce(arr, value) {
     let index = arr.indexOf(value);
