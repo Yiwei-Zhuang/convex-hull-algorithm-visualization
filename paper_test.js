@@ -3,6 +3,7 @@ let GLOBAL_POINT_LIST = [];
 let GLOBAL_POINT_OBJECT_MAP = {};
 let tool = new paper.Tool();
 let GRAHAM_SCAN_HULL_PATH = null;
+let MERGE_HULL_PATH = null;
 
 tool.onMouseDown = async (event) => {
     let point = event.point;
@@ -43,6 +44,7 @@ window.onload = function () {
     // Create an empty project and a view for the canvas:
     paper.setup(canvas);
     GRAHAM_SCAN_HULL_PATH = new paper.Path();
+    MERGE_HULL_PATH = new paper.Path();
     paper.view.draw();
 }
 

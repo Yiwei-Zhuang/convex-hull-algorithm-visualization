@@ -70,6 +70,98 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function nextPointOnPointList(pl, point) {
+    let retIndex = 0;
+    for (let i = 0; i < pl.length; i++) {
+        if (pl[i].x === point.x && pl[i].y === point.y) {
+            retIndex = i + 1;
+            break;
+        }
+    }
+    if (retIndex === pl.length) {
+        retIndex = 0;
+    }
+    return pl[retIndex];
+}
+
+function previousPointOnPointList(pl, point) {
+    let retIndex = 0;
+    for (let i = 0; i < pl.length; i++) {
+        if (pl[i].x === point.x && pl[i].y === point.y) {
+            retIndex = i - 1;
+            break;
+        }
+    }
+    if (retIndex === -1) {
+        retIndex = pl.length - 1;
+    }
+    return pl[retIndex];
+}
+
+function nextPointIndex(pl, index) {
+    let retIndex = index + 1;
+    if(retIndex === pl.length) {
+        retIndex = 0;
+    }
+    return retIndex;
+}
+
+function previousPointIndex(pl, index) {
+    let retIndex = index - 1;
+    if(retIndex === -1) {
+        retIndex = pl.length - 1;
+    }
+    return retIndex;
+}
+
+function rightMostPointIndex(pl) {
+    let rightMostX = -1; // Start at (0,0)
+    let rightMostXIndex = -1;
+    for(let i = 0; i < pl.length; i++) {
+        if(pl[i].x > rightMostX) {
+            rightMostX = pl[i].x;
+            rightMostXIndex = i;
+        }
+    }
+    return rightMostXIndex;
+}
+
+function leftMostPointIndex(pl) {
+    let leftMostX = Number.MAX_VALUE;
+    let leftMostXIndex = Number.MAX_VALUE;
+    for(let i = 0; i < pl.length; i++) {
+        if(pl[i].x < leftMostX) {
+            leftMostX = pl[i].x;
+            leftMostXIndex = i;
+        }
+    }
+    return leftMostXIndex;
+}
+
+function topPointIndex(pl) {
+    let topY = -1;
+    let topYIndex = -1;
+    for(let i = 0; i < pl.length; i++) {
+        if(pl[i].y > topY) {
+            topY = pl[i].y;
+            topYIndex = i;
+        }
+    }
+    return topYIndex;
+}
+
+function botPointIndex(pl) {
+    let botY = Number.MAX_VALUE;
+    let botYIndex = Number.MAX_VALUE;
+    for(let i = 0; i < pl.length; i++) {
+        if(pl[i].y < botY) {
+            botY = pl[i].y;
+            botYIndex = i;
+        }
+    }
+    return botYIndex;
+}
+
 function removeItemOnce(arr, value) {
     let index = arr.indexOf(value);
     if (index > -1) {

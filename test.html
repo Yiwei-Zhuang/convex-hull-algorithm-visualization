@@ -16,20 +16,27 @@
 <body>
 <canvas id="myCanvas" style="width: 800px; height: 600px; border: solid blue 3px"></canvas>
 
+<input id="graham_scan_btn" type="button" value="Graham Scan">
+<label for="graham_scan_visual_checkbox">Visual</label><input id="graham_scan_visual_checkbox" type="checkbox">
 <input id="merge_hull_btn" type="button" value="Merge Hull">
-<label for="merge_hull_visual_checkbox">Visual</label><input id="merge_hull_visual_checkbox" type="checkbox">
+
 <div id="cover-up"></div>
 
 </body>
 <script>
     let coverUp = $("#cover-up").hide();
-    $("#merge_hull_btn").click(async function () {
-        let visual = $("#merge_hull_visual_checkbox").prop("checked");
+    $("#graham_scan_btn").click(async function () {
+        let visual = $("#graham_scan_visual_checkbox").prop("checked");
         if (visual) {
             coverUp.show();
         }
+        // mergeHull(GLOBAL_POINT_LIST);
         drawPolygon(GRAHAM_SCAN_HULL_PATH, await grahamScan(Array.from(GLOBAL_POINT_LIST), visual));
         coverUp.hide();
+    });
+
+    $("#merge_hull_btn").click(async function (e) {
+        drawPolygon(MERGE_HULL_PATH, await mergeHull(Array.from(GLOBAL_POINT_LIST)));
     });
 
 </script>
